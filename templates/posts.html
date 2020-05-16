@@ -1,0 +1,51 @@
+{% extends 'base.html'%}
+
+{%block head%}
+<title>posts</title>
+{%endblock%}
+
+{%block body%} 
+<h1>All posts</h1>
+
+
+<hr>
+<h2>Create a new Blog</h2>
+<form action="/posts" method="POST">
+Title:
+
+    <input class="form-control" type="text" name="title" placeholder=" Enter title" aria-label="Enter title">
+
+<br>
+Author:
+
+<input class="form-control" type="text" name="author" placeholder=" Enter author" aria-label="Enter author">
+
+<br>
+    <label for="content">Post</label>
+    <textarea class="form-control" name="content" id="content" placeholder=" Enter content" aria-label="Enter content" rows="3"></textarea>
+
+<br>
+<input type="submit" value="Post">
+</form>
+<hr>
+
+    {% for post in posts %}
+    <h2>{{ post.title}}</h2>
+
+    {% if post.author %}
+
+    <small> Written by {{ post.author}} on {{post.date_posted}}</small>
+    {% else %}
+    <small> Written by Unknown on {{post.date_posted}}</small>
+    {%endif%}
+    <br>
+    
+    
+    <p>{{ post.content }}</p>
+    <a class="btn btn-outline-danger" href="/posts/delete/{{post.id}}">Delete</a>
+    <a class="btn btn-outline-success" href="/posts/edit/{{post.id}}">Update</a>
+    <hr>
+    <br>
+    {% endfor %}
+
+{%endblock%}
