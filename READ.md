@@ -17,7 +17,7 @@ No known bugs if a bug is found create an issue in the issues section of the rep
 Feel free to contribute to this repository to make pull requests.
 ### License
 * This Blog is licensed under MIT
-This Blog is licensed under MIT
+
 
 Copyright 2020 Mwangi Margaret
 
