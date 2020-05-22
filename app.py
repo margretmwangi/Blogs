@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request,redirect
+from flask import Flask, render_template, request,redirect,flash
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
+
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '_3312347b66e48e88f3b189e70588191e_'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///post.db'
 db =SQLAlchemy(app)
 
@@ -21,6 +23,22 @@ class BlogPost(db.Model):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/register',methods=['GET','POST'])
+def register():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Account created successfully')
+        return redirect(url_for('/posts'))
+    return render_template('register.html',title='Register',form=form)
+
+
+@app.route('/login')
+def login():
+    form = LoginForm()
+    return render_template('login.html',title='Login',form=form)
+
 
 
 @app.route('/posts',methods=['GET','POST'])
@@ -45,7 +63,7 @@ def delete(id):
     return redirect('/posts')
 @app.route('/posts/edit/<int:id>',methods=['GET','POST'])
 def edit(id):
-    post = BlogPost.query.get_or_404
+    post = BlogPost.query.get_or_404(id)
     if request.method == 'POST':
         post.title = request.form['title']
         post.author =  request.form['author']
