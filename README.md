@@ -6,8 +6,9 @@ This is a blog where you can create and share your opinions and other users can 
 ## Setup/Installation Requirements
 * Clone the Repo and checkout into the project folder.
 * git clone   https://github.com/margretmwangi/Blogs.git  && cd Blogs
-
-
+* Pip install Flask
+*  pip install -r requirements.txt 
+ 
 ## Known Bugs
 No known bugs if a bug is found create an issue in the issues section of the repository.
 ## Technologies Used
